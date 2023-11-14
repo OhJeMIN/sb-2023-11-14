@@ -19,14 +19,16 @@ public class ArticleController {
 
     @GetMapping("/article/doWrite")
     @ResponseBody
-    Article doWrite(
+    Map<String, Object>  doWrite(
             String title,
             String body
     ) {
-        Map<String, Object> rs = new HashMap<>();
         Article article = new Article(1, title, body);
+        Map<String, Object> rs = new HashMap<>();
+        rs.put("msg", "1번 게시물이 작성되었습니다.");
+        rs.put("data", article);
 
-        return article;
+        return rs;
     }
 }
 
