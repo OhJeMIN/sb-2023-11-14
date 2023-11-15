@@ -5,6 +5,7 @@ import com.ll.sb20231114.domain.article.article.entity.Article;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class ArticleRepository {
     private final List<Article> articles = new ArrayList<>();
 
