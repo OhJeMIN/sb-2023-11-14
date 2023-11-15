@@ -6,15 +6,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class ArticleController {
 
-    private List<Article> articles = new ArrayList<>();
+    List<Article> articles = new ArrayList<>();
     @GetMapping("/article/write")
-    String showWrite() {
-
+    String write(){
         return "article/write";
     }
 
@@ -23,11 +23,10 @@ public class ArticleController {
     RsData doWrite(
             String title,
             String body
-    ) {
-
-        Article article = new Article(articles.size() + 1, title, body);
+    ){
+        Article article = new Article(articles.size()+1, title,body);
         articles.add(article);
-        RsData<Article> rs = new RsData(
+        RsData<Article> rs = new RsData<>(
                 "S-1",
                 "%d번 게시물이 작성되었습니다.".formatted(article.getId()),
                 article
@@ -37,22 +36,24 @@ public class ArticleController {
         Article _article = rs.getData();
         return rs;
     }
-
     @GetMapping("/article/getLastArticle")
     @ResponseBody
-    Article getLastArticle() {
+    Article getLastArticle(){
         return articles.getLast();
     }
 
     @GetMapping("/article/getArticles")
     @ResponseBody
-    List<Article> getArticles() {
+    List<Article> getArticles(){
         return articles;
     }
 }
+
+
+
 @AllArgsConstructor
 @Getter
-class RsData<T>{
+class RsData<T> {
     private String resultCode;
     private String msg;
     private T data;
