@@ -1,7 +1,7 @@
-package com.ll.sb20231114;
+package com.ll.sb20231114.domain.article.article.controller;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import com.ll.sb20231114.domain.article.article.entity.Article;
+import com.ll.sb20231114.global.rsData.RsData;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -51,18 +51,5 @@ public class ArticleController {
 
 
 
-@AllArgsConstructor
-@Getter
-class RsData<T> {
-    private String resultCode;
-    private String msg;
-    private T data;
-}
 
-@AllArgsConstructor
-@Getter
-class Article {
-    private long id;
-    private String title;
-    private String body;
-}
+
