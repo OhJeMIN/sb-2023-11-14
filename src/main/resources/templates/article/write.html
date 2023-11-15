@@ -9,6 +9,8 @@
 </div>
 <script>
     function submitWriteForm(){
+        document.getElementById("input-title").value =document.getElementById("input-title").value.trim();
+        document.getElementById("input-body").value = document.getElementById("input-body").value.trim();
         const title = document.getElementById("input-title").value.trim();
         const body =document.getElementById("input-body").value.trim();
 
