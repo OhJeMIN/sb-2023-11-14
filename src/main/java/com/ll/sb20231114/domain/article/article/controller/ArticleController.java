@@ -22,7 +22,7 @@ public class ArticleController {
         return "article/write";
     }
 
-    @GetMapping("/article/doWrite")
+    @PostMapping("/article/doWrite")
     @ResponseBody
     RsData doWrite(
             String title,
