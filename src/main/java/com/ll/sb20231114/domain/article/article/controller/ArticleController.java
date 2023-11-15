@@ -15,7 +15,7 @@ import java.util.List;
 public class ArticleController {
     //@Autowired // 필드 주입, final은 뺸다.
     private final ArticleService  articleService;
-    @Autowired
+    @Autowired // 만약 생성자가 하나라면 AUtoWired 생략 가능
     public ArticleController(ArticleService articleService) {
         this.articleService = articleService;
     }
