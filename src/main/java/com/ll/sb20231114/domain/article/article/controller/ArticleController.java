@@ -6,7 +6,9 @@ import com.ll.sb20231114.global.rq.Rq;
 import com.ll.sb20231114.global.rsData.RsData;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,15 +37,18 @@ public class ArticleController {
         return "article/write";
     }
 
+    @Data
+    public static class WriteForm{
+        @NotBlank
+        private String title;
+        @NotBlank
+        private String body;
+    }
     @PostMapping("/article/write")
     @ResponseBody
-    RsData Write(
-            @NotBlank(message = "제목 쓰셈 ") String title,
-            @NotBlank String body
+    RsData Write(@Valid WriteForm writeForm){ // writeform 안에 Notblank 쓰게하기 위해선 Valid 쓴다
 
-    ){
-
-        Article article = articleService.write(body,title);
+        Article article = articleService.write(writeForm.body,writeForm.title);
         RsData<Article> rs = new RsData<>(
                 "S-1",
                 "%d번 게시물이 작성되었습니다.".formatted(article.getId()),
