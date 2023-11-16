@@ -39,6 +39,14 @@ public class ArticleController {
             String body
 
     ){
+        if( title == null || title.trim().length() == 0){
+            return new RsData<>("F-1",
+                    "제목을 입력해주세요");
+        }
+        if( body == null || body.trim().length() == 0){
+            return new RsData<>("F-2",
+                    "내용을 입력해주세요");
+        }
         Article article = articleService.write(body,title);
         RsData<Article> rs = new RsData<>(
                 "S-1",
