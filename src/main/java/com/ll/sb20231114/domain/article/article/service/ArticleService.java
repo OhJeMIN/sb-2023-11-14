@@ -12,14 +12,14 @@ import java.util.List;
 public class ArticleService {
     /*@Autowired 필드 주입 --> 객체만들고 나중에 받는것
     private final ArticleRepository articleRepository;  final 불가능 왜냐면 만들면 이미 null 이 들어가 바꿀 수 없기 때문이다. */
-    private  final ArticleRepository articleRepository;// 생성자로 주입할땐 final 가능 , 만들자마자 바로 예시로(칼) 이 들어가기 떄문에 된다.
+    private final ArticleRepository articleRepository;// 생성자로 주입할땐 final 가능 , 만들자마자 바로 예시로(칼) 이 들어가기 떄문에 된다.
     /*@Autowired // 생성자 주입 --> 객체만들면서 바로 주기, 만약 생성자가 하나라면 AUtoWired 생략 가능
     public ArticleService(ArticleRepository articleRepository){
         this.articleRepository =articleRepository;
     }*/
 
     public Article write(String title, String body) {
-        Article article = new Article(title,body);
+        Article article = new Article(title, body);
         articleRepository.save(article);
         return article;
     }

@@ -24,7 +24,7 @@ import java.util.List;
 @Validated
 public class ArticleController {
     //@Autowired // 필드 주입, final은 뺸다.
-    private final ArticleService  articleService;
+    private final ArticleService articleService;
     private final Rq rq; //rq는 대리자임, 근데 대리자가 넘 똑똑해서 요청 rq를 알고 토스해줌
     /*@Autowired // 만약 생성자가 하나라면 AUtoWired 생략 가능
     public ArticleController(ArticleService articleService) {
@@ -33,22 +33,23 @@ public class ArticleController {
 
 
     @GetMapping("/article/write")
-    String showWrite(){
+    String showWrite() {
         return "article/write";
     }
 
     @Data
-    public static class WriteForm{
+    public static class WriteForm {
         @NotBlank
         private String title;
         @NotBlank
         private String body;
     }
+
     @PostMapping("/article/write")
     @ResponseBody
-    RsData Write(@Valid WriteForm writeForm){ // writeform 안에 Notblank 쓰게하기 위해선 Valid 쓴다
+    RsData Write(@Valid WriteForm writeForm) { // writeform 안에 Notblank 쓰게하기 위해선 Valid 쓴다
 
-        Article article = articleService.write(writeForm.body,writeForm.title);
+        Article article = articleService.write(writeForm.body, writeForm.title);
         RsData<Article> rs = new RsData<>(
                 "S-1",
                 "%d번 게시물이 작성되었습니다.".formatted(article.getId()),
@@ -59,44 +60,44 @@ public class ArticleController {
 
     @PostMapping("/article/getLastArticle")
     @ResponseBody
-    Article getLastArticle(){
+    Article getLastArticle() {
         return articleService.findLiastArticle();
     }
 
     @GetMapping("/article/getArticles")
     @ResponseBody
-    List<Article> getArticles(){
+    List<Article> getArticles() {
         return articleService.findAll();
     }
 
     @GetMapping("/article/articleServicePointer")
     @ResponseBody
-    String articleServicePointer(){
+    String articleServicePointer() {
         return articleService.toString();
     }
 
     @GetMapping("/article/HttpServletRequestPointer")
     @ResponseBody
-    String HttpServletRequestPointer(HttpServletRequest req){
+    String HttpServletRequestPointer(HttpServletRequest req) {
         return req.toString();
     }
 
     @GetMapping("/article/HttpServletResponsePointer")
     @ResponseBody
-    String HttpServletResponsePointer(HttpServletResponse resp){
+    String HttpServletResponsePointer(HttpServletResponse resp) {
         return resp.toString();
     }
 
     @GetMapping("/article/rqPointer")
     @ResponseBody
-    String rqPointer(){
+    String rqPointer() {
         return rq.toString();
     }
 
     @GetMapping("/article/rqTest")
-    String showRqTest(Model model){
+    String showRqTest(Model model) {
         String rqToString = rq.toString();
-        model.addAttribute("rqToString",rqToString);
+        model.addAttribute("rqToString", rqToString);
         return "article/rqTest";
     }
 }

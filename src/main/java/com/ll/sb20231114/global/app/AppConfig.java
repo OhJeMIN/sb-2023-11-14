@@ -14,12 +14,12 @@ import java.util.List;
 
 public class AppConfig {
     @Bean
-    List<Article>articles2(){
+    List<Article> articles2() {
         return new LinkedList<>();
     }
 
     @Bean
-    List<Article>articles(){
+    List<Article> articles() {
         return new ArrayList<>();
     }
 }

@@ -16,13 +16,15 @@ import java.util.Map;
 public class HomeController {
 
     @GetMapping("/")
-    @ResponseBody // 이 함수의 리턴 값을 그대로 브라우저에 전송하라는 의미
-    String showMain(){
+    @ResponseBody
+        // 이 함수의 리턴 값을 그대로 브라우저에 전송하라는 의미
+    String showMain() {
         return "안녕하세요.";
     }
+
     @GetMapping("/about")
     @ResponseBody
-    String showAbout(){
+    String showAbout() {
         return "개발자 커뮤니티";
     }
 
@@ -70,7 +72,7 @@ public class HomeController {
     int showCalc6(
             int a, int b
     ) {
-        return a+b;
+        return a + b;
     }
 
     @GetMapping("/calc7")
@@ -78,13 +80,13 @@ public class HomeController {
     boolean showCalc7(
             int a, int b
     ) {
-        return a> b;
+        return a > b;
     }
 
     @GetMapping("/calc8")
     @ResponseBody
     Person showCalc8(
-           String name, int age
+            String name, int age
     ) {
         return new Person(name, age);
     }
@@ -114,7 +116,7 @@ public class HomeController {
     List<Integer> showCalc11(
             String name, int age
     ) {
-        List<Integer> nums = new ArrayList<>(){{
+        List<Integer> nums = new ArrayList<>() {{
             add(10);
             add(-510);
             add(10011);
@@ -126,7 +128,7 @@ public class HomeController {
     @GetMapping("/calc12")
     @ResponseBody
     int[] showCalc12() {
-        int[] nums = new int[]{10,-510,10011};
+        int[] nums = new int[]{10, -510, 10011};
         return nums;
     }
 
@@ -135,10 +137,10 @@ public class HomeController {
     List<Person2> showCalc13(
             String name, int age
     ) {
-        List<Person2> nums = new ArrayList<>(){{
+        List<Person2> nums = new ArrayList<>() {{
             add(new Person2(name, age));
-            add(new Person2(name+"!", age));
-            add(new Person2(name+"!!", age));
+            add(new Person2(name + "!", age));
+            add(new Person2(name + "!!", age));
         }};
 
         return nums;
@@ -168,7 +170,7 @@ public class HomeController {
 
     @GetMapping("/calc17")
     @ResponseBody
-    //개행문자 안써도 됨
+        //개행문자 안써도 됨
     String showCalc17() {
         String html = """
                 <div>
@@ -200,7 +202,7 @@ public class HomeController {
                 <div>
                     <input type="text" placeholder="내용" value="%s">
                 </div>
-                
+                                
                 <div>
                     <input type="text" placeholder="내용" value="%s">
                 </div>
@@ -219,7 +221,9 @@ public class HomeController {
         model.addAttribute("v2", "반가워");
         return "calc21";
     }
+
     int num = 0;
+
     @GetMapping("/calc22")
     @ResponseBody
     int showCalc22() {
@@ -230,14 +234,14 @@ public class HomeController {
 
 @AllArgsConstructor
 @Getter
-class Person{
+class Person {
     public String name;
     public int age;
 }
 
 @AllArgsConstructor
 @Getter
-class Person2{
+class Person2 {
     private String name;
     private int age;
 }
