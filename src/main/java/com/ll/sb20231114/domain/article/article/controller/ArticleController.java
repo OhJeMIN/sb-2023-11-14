@@ -3,6 +3,7 @@ package com.ll.sb20231114.domain.article.article.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ll.sb20231114.domain.article.article.entity.Article;
 import com.ll.sb20231114.domain.article.article.service.ArticleService;
+import com.ll.sb20231114.global.rq.Rq;
 import com.ll.sb20231114.global.rsData.RsData;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -20,6 +21,7 @@ import java.util.List;
 public class ArticleController {
     //@Autowired // 필드 주입, final은 뺸다.
     private final ArticleService  articleService;
+    private final Rq rq;
     /*@Autowired // 만약 생성자가 하나라면 AUtoWired 생략 가능
     public ArticleController(ArticleService articleService) {
         this.articleService = articleService;
@@ -79,6 +81,30 @@ public class ArticleController {
     @ResponseBody
     List<Article> getArticles(){
         return articleService.findAll();
+    }
+
+    @GetMapping("/article/articleServicePointer")
+    @ResponseBody
+    String articleServicePointer(){
+        return articleService.toString();
+    }
+
+    @GetMapping("/article/HttpServletRequestPointer")
+    @ResponseBody
+    String HttpServletRequestPointer(HttpServletRequest req){
+        return req.toString();
+    }
+
+    @GetMapping("/article/HttpServletResponsePointer")
+    @ResponseBody
+    String HttpServletResponsePointer(HttpServletResponse resp){
+        return resp.toString();
+    }
+
+    @GetMapping("/article/rqPointer")
+    @ResponseBody
+    String rqPointer(){
+        return rq.toString();
     }
 }
 
