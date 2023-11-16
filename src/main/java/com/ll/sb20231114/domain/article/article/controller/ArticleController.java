@@ -45,6 +45,12 @@ public class ArticleController {
         private String body;
     }
 
+    @GetMapping("/article/list")
+    String showList() {
+
+        return "article/list";
+    }
+
     @PostMapping("/article/write")
     @ResponseBody
     RsData Write(@Valid WriteForm writeForm) { // writeform 안에 Notblank 쓰게하기 위해선 Valid 쓴다
