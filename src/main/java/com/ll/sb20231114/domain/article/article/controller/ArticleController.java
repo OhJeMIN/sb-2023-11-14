@@ -22,7 +22,7 @@ import java.util.List;
 public class ArticleController {
     //@Autowired // 필드 주입, final은 뺸다.
     private final ArticleService  articleService;
-    private final Rq rq;
+    private final Rq rq; //rq는 대리자임, 근데 대리자가 넘 똑똑해서 요청 rq를 알고 토스해줌
     /*@Autowired // 만약 생성자가 하나라면 AUtoWired 생략 가능
     public ArticleController(ArticleService articleService) {
         this.articleService = articleService;
