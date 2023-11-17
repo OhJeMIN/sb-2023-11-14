@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -30,5 +31,11 @@ public class ArticleRepository {
 
     public List<Article> findAll() {
         return articles;
+    }
+
+    public Optional<Article> findById(long id) {
+        return articles.stream()
+                .filter(article -> article.getId() == id)
+                .findFirst();
     }
 }
