@@ -75,6 +75,13 @@ public class ArticleController {
         return "redirect:/article/list?msg=" + msg;
     }
 
+    @GetMapping("/article/modify/{id}")
+    String ShowModify(@PathVariable long id) {
+        articleService.delete(id);
+        String msg = "id %d is article deleted".formatted(id);
+        return "redirect:/article/list?msg=" + msg;
+    }
+
     @PostMapping("/article/getLastArticle")
     @ResponseBody
     Article getLastArticle() {
