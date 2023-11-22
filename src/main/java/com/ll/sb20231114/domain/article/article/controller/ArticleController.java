@@ -79,14 +79,16 @@ public class ArticleController {
     String modify(@PathVariable long id, @Valid ModifyForm modifyForm) { // writeform 안에 Notblank 쓰게하기 위해선 Valid 쓴다
 
         articleService.modify(id, modifyForm.body, modifyForm.title);
-        String msg = "id %d is article modified".formatted(id);
+        String msg = "%d번 게시물 수정되었습니다.".formatted(id);
+        msg = URLEncoder.encode(msg, StandardCharsets.UTF_8); // 얘를 하면 한글이 써진다 외워라
         return "redirect:/article/list?msg=" + msg;
     }
 
     @GetMapping("/article/delete/{id}")
     String delete(@PathVariable long id) {
         articleService.delete(id);
-        String msg = "id %d is article deleted".formatted(id);
+        String msg = "%d번 게시물 삭제되었습니다.".formatted(id);
+        msg = URLEncoder.encode(msg, StandardCharsets.UTF_8); // 얘를 하면 한글이 써진다 외워라
         return "redirect:/article/list?msg=" + msg;
     }
 
