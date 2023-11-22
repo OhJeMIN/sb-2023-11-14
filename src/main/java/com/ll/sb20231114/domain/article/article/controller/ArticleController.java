@@ -35,7 +35,7 @@ public class ArticleController {
     @GetMapping("/article/detail/{id}")
     String showDetail(Model model, @PathVariable long id) {
         Article article = articleService.findById(id).get();
-        model.addAttribute("article",article);
+        model.addAttribute("article", article);
         return "article/detail";
     }
 
@@ -56,15 +56,22 @@ public class ArticleController {
     @GetMapping("/article/list")
     String showList(Model model) {
         List<Article> articles = articleService.findAll();
-        model.addAttribute("articles",articles);
+        model.addAttribute("articles", articles);
         return "article/list";
     }
 
     @PostMapping("/article/write")
-    String  Write(@Valid WriteForm writeForm) { // writeform 안에 Notblank 쓰게하기 위해선 Valid 쓴다
+    String Write(@Valid WriteForm writeForm) { // writeform 안에 Notblank 쓰게하기 위해선 Valid 쓴다
 
         Article article = articleService.write(writeForm.body, writeForm.title);
         String msg = "id %d is created".formatted(article.getId());
+        return "redirect:/article/list?msg=" + msg;
+    }
+
+    @GetMapping("/article/delete/{id}")
+    String delete(@PathVariable long id) {
+        articleService.delete(id);
+        String msg = "id %d is article deleted".formatted(id);
         return "redirect:/article/list?msg=" + msg;
     }
 
