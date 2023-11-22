@@ -40,4 +40,10 @@ public class ArticleService {
     public void delete(long id) {
         articleRepository.delete(id);
     }
+
+    public void modify(long id, String body, String title) {
+        Article artlce = findById(id).get();
+        artlce.setTitle(title);
+        artlce.setBody(body);
+    }
 }
