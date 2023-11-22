@@ -31,19 +31,19 @@ public class ArticleController {
     String showList(Model model) {
         List<Article> articles = articleService.findAll();
         model.addAttribute("articles", articles);
-        return "article/list";
+        return "/article/article/list";
     }
 
     @GetMapping("/article/detail/{id}")
     String showDetail(Model model, @PathVariable long id) {
         Article article = articleService.findById(id).get();
         model.addAttribute("article", article);
-        return "article/detail";
+        return "/article/article/detail";
     }
 
     @GetMapping("/article/write")
     String showWrite() {
-        return "article/write";
+        return "/article/article/write";
     }
 
 
@@ -61,7 +61,7 @@ public class ArticleController {
     String Write(@Valid WriteForm writeForm) { // writeform 안에 Notblank 쓰게하기 위해선 Valid 쓴다
 
         Article article = articleService.write(writeForm.body, writeForm.title);
-        return rq.redirect("/article/list", "%d번 게시물 생성되었습니다.".formatted(article.getId()));
+        return rq.redirect("/article/article/list", "%d번 게시물 생성되었습니다.".formatted(article.getId()));
     }
 
     @Data
@@ -76,13 +76,13 @@ public class ArticleController {
     String modify(@PathVariable long id, @Valid ModifyForm modifyForm) { // writeform 안에 Notblank 쓰게하기 위해선 Valid 쓴다
 
         articleService.modify(id, modifyForm.body, modifyForm.title);
-        return rq.redirect("/article/list", "%d번 게시물 수정되었습니다.".formatted(id));
+        return rq.redirect("/article/article/list", "%d번 게시물 수정되었습니다.".formatted(id));
     }
 
     @GetMapping("/article/delete/{id}")
     String delete(@PathVariable long id) {
         articleService.delete(id);
-        return rq.redirect("/article/list", "%d번 게시물 삭제되었습니다.".formatted(id));
+        return rq.redirect("/article/article/list", "%d번 게시물 삭제되었습니다.".formatted(id));
     }
 
     @GetMapping("/article/modify/{id}")

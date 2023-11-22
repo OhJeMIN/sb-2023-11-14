@@ -30,6 +30,8 @@ dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     //타임리프(뷰)
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
+
     //스프링 웹
     implementation 'org.springframework.boot:spring-boot-starter-web'
     //롬복
