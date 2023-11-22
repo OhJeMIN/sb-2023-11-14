@@ -76,10 +76,10 @@ public class ArticleController {
     }
 
     @GetMapping("/article/modify/{id}")
-    String ShowModify(@PathVariable long id) {
-        articleService.delete(id);
-        String msg = "id %d is article deleted".formatted(id);
-        return "redirect:/article/list?msg=" + msg;
+    String ShowModify(Model model, @PathVariable long id) {
+        Article article = articleService.findById(id).get();
+        model.addAttribute("article", article);
+        return "article/modify";
     }
 
     @PostMapping("/article/getLastArticle")
