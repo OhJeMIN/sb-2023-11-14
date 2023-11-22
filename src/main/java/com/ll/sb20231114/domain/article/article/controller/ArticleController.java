@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor // final 받은 녀석만 자동으로 생성자 만들어줌 그래서 생성자들 생략 가능
@@ -34,10 +33,9 @@ public class ArticleController {
 
 
     @GetMapping("/article/detail/{id}")
-    @ResponseBody
-    String showDetail(@PathVariable long id) {
-        Optional<Article> opArticle = articleService.findById(id);
-        Article article = opArticle.get();
+    String showDetail(Model model, @PathVariable long id) {
+        Article article = articleService.findById(id).get();
+        model.addAttribute("article",article);
         return "article/detail";
     }
 
