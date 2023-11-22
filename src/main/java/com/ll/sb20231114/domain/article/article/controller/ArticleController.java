@@ -60,7 +60,7 @@ public class ArticleController {
     String Write(@Valid WriteForm writeForm) { // writeform 안에 Notblank 쓰게하기 위해선 Valid 쓴다
 
         Article article = articleService.write(writeForm.body, writeForm.title);
-        String msg = "id %d is created".formatted(article.getId());
+        String msg = "%d번 게시물 생성되었습니다.".formatted(article.getId());
         return "redirect:/article/list?msg=" + msg;
     }
 
