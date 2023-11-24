@@ -76,20 +76,20 @@ public class ArticleController {
     String modify(@PathVariable long id, @Valid ModifyForm modifyForm) { // writeform 안에 Notblank 쓰게하기 위해선 Valid 쓴다
 
         articleService.modify(id, modifyForm.body, modifyForm.title);
-        return rq.redirect("/article/article/list", "%d번 게시물 수정되었습니다.".formatted(id));
+        return rq.redirect("/article/list", "%d번 게시물 수정되었습니다.".formatted(id));
     }
 
     @GetMapping("/article/delete/{id}")
     String delete(@PathVariable long id) {
         articleService.delete(id);
-        return rq.redirect("/article/article/list", "%d번 게시물 삭제되었습니다.".formatted(id));
+        return rq.redirect("/article/list", "%d번 게시물 삭제되었습니다.".formatted(id));
     }
 
     @GetMapping("/article/modify/{id}")
     String ShowModify(Model model, @PathVariable long id) {
         Article article = articleService.findById(id).get();
         model.addAttribute("article", article);
-        return "article/modify";
+        return "/article/article/modify";
     }
 }
 
