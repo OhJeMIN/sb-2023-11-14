@@ -10,11 +10,14 @@
 </head>
 <body>
 
-<script src ="https://cdn.tailwindcss.com"></script>
+<link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.6/dist/full.min.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.tailwindcss.com"></script>
+
 
 <div class="text-[#FF0000]" th:if="${param.msg}!= null">
     메세지 : [[${param.msg}]]
 </div>
+<button class="btn btn-secondary">버튼</button>
 
 <ul class="flex gap-[21.45px]">
     <li><a href="/article/write">글 쓰기</a></li>
