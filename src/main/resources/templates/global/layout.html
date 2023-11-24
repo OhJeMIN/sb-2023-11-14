@@ -6,17 +6,17 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>SIMPLE</title>
-    <link rel="stylesheet" href="/resource/global.cssq">
+    <link rel="stylesheet" href="/resource/global.css">
 </head>
 <body>
 
 <script src ="https://cdn.tailwindcss.com"></script>
 
-<div style="color:red;" th:if="${param.msg}!= null">
+<div class="text-[#FF0000]" th:if="${param.msg}!= null">
     메세지 : [[${param.msg}]]
 </div>
 
-<ul style="display: flex; gap: 20px">
+<ul class="flex gap-[21.45px]">
     <li><a href="/article/write">글 쓰기</a></li>
     <li><a href="/article/list">글 목록</a></li>
 </ul>
