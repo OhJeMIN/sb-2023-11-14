@@ -29,6 +29,11 @@ public class MemberController {
         return "/member/member/join";
     }
 
+    @GetMapping("/member/login")
+    String showLogin() {
+        return "/member/member/login";
+    }
+
 
     @Data
     public static class WriteForm {
