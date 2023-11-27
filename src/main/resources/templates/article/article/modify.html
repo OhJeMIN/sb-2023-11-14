@@ -1,7 +1,7 @@
 <html layout:decorate="~{global/layout}">
 
 <div layout:fragment="content" class="p-2">
-    <h1 class="font-bold text-center mb-2">글 수정</h1>
+    <h1 class="font-bold text-center mb-2"><i class="fa-regular fa-pen-to-square"></i>글 작성</h1>
 
     <form class="flex flex-col gap-4" method="POST" onsubmit="submitModifyForm(this); return false;">
         <div class="form-control">
@@ -21,7 +21,7 @@
 
         <!-- javascript:; 는 아무것도 하지 않는다는 뜻 -->
         <button class="btn btn-primary btn-block " type="submit">
-            글 수정
+            <i class="fa-regular fa-pen-to-square"></i>글 수정
         </button>
     </form>
 
