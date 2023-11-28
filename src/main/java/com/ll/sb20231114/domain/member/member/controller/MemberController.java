@@ -36,7 +36,7 @@ public class MemberController {
 
 
     @Data
-    public static class WriteForm {
+    public static class JoinForm {
         @NotBlank
         private String username;
         @NotBlank
@@ -44,10 +44,30 @@ public class MemberController {
     }
 
     @PostMapping("/member/join")
-    String join(@Valid WriteForm writeForm) { // writeform 안에 Notblank 쓰게하기 위해선 Valid 쓴다
+    String join(@Valid JoinForm joinForm) { // writeform 안에 Notblank 쓰게하기 위해선 Valid 쓴다
+        memberService.join(joinForm.password, joinForm.username);
+        return rq.redirect("/member/login", "로그인이 완료되었습니다.");
+    }
 
-        Member member = memberService.join(writeForm.password, writeForm.username);
-        return rq.redirect("/member/member/login", "회원가입이 완료되었습니다.");
+    @Data
+    public static class LoginForm {
+        @NotBlank
+        private String username;
+        @NotBlank
+        private String password;
+    }
+
+    @PostMapping("/member/login")
+    String login(@Valid LoginForm loginForm) { // writeform 안에 Notblank 쓰게하기 위해선 Valid 쓴다
+        Member member  = memberService.findByUsername(loginForm.username).get();
+
+        if(!member.getPassword().equals(loginForm.password)){
+            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+        }
+
+        //TODO 로그인 처리
+
+        return rq.redirect("/article/list", "로그인이 완료되었습니다.");
     }
 }
 

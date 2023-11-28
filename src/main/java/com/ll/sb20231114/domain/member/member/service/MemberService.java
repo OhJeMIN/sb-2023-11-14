@@ -33,6 +33,10 @@ public class MemberService {
         return memberRepository.findById(id);
     }
 
+    public Optional<Member> findByUsername(String username) {
+        return memberRepository.findByUsername(username);
+    }
+
     public void delete(long id) {
         memberRepository.delete(id);
     }
@@ -42,4 +46,6 @@ public class MemberService {
         artlce.setUsername(username);
         artlce.setPassword(password);
     }
+
+
 }
